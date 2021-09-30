@@ -33,7 +33,7 @@ const StyledMain = styled.main`
   display: flex;
   flex-direction: column;
   @media screen and (min-width: 760px) {
-    flex-direction: reverse;
+    flex-direction: row;
     flex-wrap: wrap;
   }
 `
