@@ -2,7 +2,6 @@ import styled from 'styled-components/macro'
 // import styled from "styled-components";
 
 const Card = ({ text, author }) => {
-  console.log('card')
   return (
     <StyledSection>
       <h2>{text}</h2>
