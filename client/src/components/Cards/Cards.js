@@ -9,6 +9,12 @@ const Cards = () => {
     { text: 'What is node?', author: 'Stefan Bering' },
     { text: 'What is React?', author: ' Timur Buchberger' },
     { text: 'What is styled components?', author: ' Danilo Bräuer' },
+    { text: 'What is node?', author: 'Stefan Bering' },
+    { text: 'What is React?', author: ' Timur Buchberger' },
+    { text: 'What is styled components?', author: ' Danilo Bräuer' },
+    { text: 'What is node?', author: 'Stefan Bering' },
+    { text: 'What is React?', author: ' Timur Buchberger' },
+    { text: 'What is styled components?', author: ' Danilo Bräuer' },
   ]
 
   return (
@@ -25,6 +31,7 @@ const StyledMain = styled.main`
   flex-direction: column;
   @media screen and (min-width: 760px) {
     flex-direction: row;
+    flex-wrap: wrap;
   }
 `
 
