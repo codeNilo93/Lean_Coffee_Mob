@@ -1,11 +1,19 @@
 import styled from 'styled-components/macro'
 import Card from '../Card/Card'
 
-const Cards = ({data}) => {
+const Cards = ({ data, onDeleteQuestion }) => {
   return (
     <StyledMain>
       {data.map(card => {
-        return <Card text={card.text} author={card.author} key={card.id} />
+        return (
+          <Card
+            id={card.id}
+            text={card.text}
+            author={card.author}
+            key={card.id}
+            onDeleteQuestion={onDeleteQuestion}
+          />
+        )
       })}
     </StyledMain>
   )
@@ -20,7 +28,5 @@ const StyledMain = styled.main`
     flex-wrap: wrap;
   }
 `
-
-
 
 export default Cards
