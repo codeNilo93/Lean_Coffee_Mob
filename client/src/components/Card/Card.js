@@ -14,5 +14,6 @@ const StyledSection = styled.section`
   border: 1px solid red;
   margin: 2rem;
   border-radius: 1rem;
+  height: fit-content;
 `
 export default Card
