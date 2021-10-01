@@ -1,15 +1,24 @@
 import styled from 'styled-components/macro'
 import Cards from './components/Cards/Cards'
 import Form from './components/Form/Form'
+import localStorageInit from './components/Cards/LocalStorageInit'
+import { useState } from 'react'
+import { nanoid } from 'nanoid'
+
+
 
 function App() {
+  localStorageInit()
+  const [data, setData] = useState(JSON.parse(localStorage.getItem("data")))
   const addQuestionHandler = question => {
-    alert('Question: ' + question)
+    const newData = [...data, {text: question, author: "user", id: nanoid()}]
+    localStorage.setItem("data", JSON.stringify(newData))
+    setData(newData)
   }
 
   return (
     <StyledDiv>
-      <Cards />
+      <Cards data={data}/>
       <Form onAddQuestion={addQuestionHandler} />
     </StyledDiv>
   )
