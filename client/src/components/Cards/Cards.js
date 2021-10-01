@@ -2,12 +2,10 @@ import { useState } from 'react'
 import styled from 'styled-components/macro'
 import Card from '../Card/Card'
 
-import { nanoid } from 'nanoid'
-
 const sampleCards = [
-  { text: 'What is node?', author: 'Stefan Bering' },
-  { text: 'What is React?', author: ' Timur Buchberger' },
-  { text: 'What is styled components?', author: ' Danilo Bräuer' }
+  { text: 'What is node?', author: 'Stefan Bering', id: 123 },
+  { text: 'What is React?', author: ' Timur Buchberger', id: 124 },
+  { text: 'What is styled components?', author: ' Danilo Bräuer', id: 125 },
 ]
 
 const Cards = () => {
@@ -16,8 +14,7 @@ const Cards = () => {
   return (
     <StyledMain>
       {data.map(card => {
-        console.log(card)
-        return <Card text={card.text} author={card.author} key={nanoid()} />
+        return <Card text={card.text} author={card.author} key={card.id} />
       })}
     </StyledMain>
   )
