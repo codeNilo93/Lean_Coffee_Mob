@@ -7,16 +7,24 @@ import { nanoid } from 'nanoid'
 
 function App() {
   localStorageInit()
+
   const [data, setData] = useState(JSON.parse(localStorage.getItem('data')))
+
   const addQuestionHandler = question => {
     const newData = [...data, { text: question, author: 'user', id: nanoid() }]
     localStorage.setItem('data', JSON.stringify(newData))
     setData(newData)
   }
 
+  const deleteQuestionHandler = id => {
+    const newData = data.filter(card => card.id !== id)
+    localStorage.setItem('data', JSON.stringify(newData))
+    setData(newData)
+  }
+
   return (
     <StyledDiv>
-      <Cards data={data} />
+      <Cards data={data} onDeleteQuestion={deleteQuestionHandler} />
       <Form onAddQuestion={addQuestionHandler} />
     </StyledDiv>
   )
