@@ -21,6 +21,7 @@ const Cards = () => {
 }
 
 const StyledMain = styled.main`
+  grid-column: 1 / 2;
   display: flex;
   flex-direction: column;
   @media screen and (min-width: 760px) {
