@@ -4,14 +4,16 @@ import Form from './components/Form/Form'
 import localStorageInit from './components/LocalStorage/LocalStorageInit'
 import { useState } from 'react'
 import { nanoid } from 'nanoid'
+import LoginForm from './components/LoginForm/LoginForm'
 
 function App() {
   localStorageInit()
 
   const [data, setData] = useState(JSON.parse(localStorage.getItem('data')))
+  const [user, setUser] = useState('')
 
   const addQuestionHandler = question => {
-    const newData = [...data, { text: question, author: 'user', id: nanoid() }]
+    const newData = [...data, { text: question, author: user, id: nanoid() }]
     localStorage.setItem('data', JSON.stringify(newData))
     setData(newData)
   }
@@ -22,9 +24,18 @@ function App() {
     setData(newData)
   }
 
+  const addUserHandler = username => {
+    localStorage.setItem('user', JSON.stringify(username))
+    setUser(username)
+  }
+
   return (
     <StyledDiv>
-      <Cards data={data} onDeleteQuestion={deleteQuestionHandler} />
+      {user ? (
+        <Cards data={data} onDeleteQuestion={deleteQuestionHandler} />
+      ) : (
+        <LoginForm onAddUser={addUserHandler} />
+      )}
       <Form onAddQuestion={addQuestionHandler} />
     </StyledDiv>
   )
