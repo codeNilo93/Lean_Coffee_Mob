@@ -1,16 +1,7 @@
-import { useState } from 'react'
 import styled from 'styled-components/macro'
 import Card from '../Card/Card'
 
-const sampleCards = [
-  { text: 'What is node?', author: 'Stefan Bering', id: 123 },
-  { text: 'What is React?', author: ' Timur Buchberger', id: 124 },
-  { text: 'What is styled components?', author: ' Danilo Bräuer', id: 125 },
-]
-
-const Cards = () => {
-  const [data, setData] = useState(sampleCards)
-
+const Cards = ({data}) => {
   return (
     <StyledMain>
       {data.map(card => {
@@ -29,5 +20,7 @@ const StyledMain = styled.main`
     flex-wrap: wrap;
   }
 `
+
+
 
 export default Cards
