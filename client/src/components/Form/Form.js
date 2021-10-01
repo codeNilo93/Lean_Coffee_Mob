@@ -1,34 +1,56 @@
 import styled from 'styled-components/macro'
+import { useState } from 'react'
 
-const Form = () => {
-    return (
-        <StyledForm>
-            <StyledLabel htmlFor='newText'>Question</StyledLabel>
-            <StyledInput type="text" name="newText" placeholder="placeholder"/>
-            <button type="button">Save</button>
-        </StyledForm>
+const Form = ({ onAddQuestion }) => {
+  const [question, setQuestion] = useState('')
 
-    )
+  const changeQuestionHandler = event => {
+    setQuestion(event.target.value)
+  }
+
+  const submitForm = () => {
+    onAddQuestion(question)
+  }
+
+  return (
+    <StyledForm onSubmit={submitForm}>
+      <StyledLabel htmlFor="newQuestion">Question</StyledLabel>
+      <StyledInput
+        type="text"
+        id="newQuestion"
+        name="newQuestion"
+        placeholder="Please enter your question"
+        onChange={event => changeQuestionHandler(event)}
+      />
+      <StyledButton type="submit">Save</StyledButton>
+    </StyledForm>
+  )
 }
 
 const StyledForm = styled.form`
-  width: 90vw;
+  grid-column: 2 / -1;
   margin: 0.25rem;
   border-radius: 1rem;
-  display:flex;
+  display: flex;
   flex-direction: row;
-  gap: 10%;
   justify-content: center;
-
 `
 const StyledInput = styled.input`
-background: light-grey;
-border-radius: 1rem;
-width: 90%;
+  background: light-grey;
+  border-radius: 1rem;
+  width: 100%;
 `
 
 const StyledLabel = styled.label`
-visibility: hidden;
+  visibility: hidden;
+  width: 0px;
+`
+
+const StyledButton = styled.button`
+  background: #008cba;
+  color: #fff;
+  border: 1px solid #000;
+  border-radius: 25px;
 `
 
 export default Form
