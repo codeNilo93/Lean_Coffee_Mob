@@ -7,13 +7,7 @@ import { nanoid } from 'nanoid'
 const sampleCards = [
   { text: 'What is node?', author: 'Stefan Bering' },
   { text: 'What is React?', author: ' Timur Buchberger' },
-  { text: 'What is styled components?', author: ' Danilo Bräuer' },
-  { text: 'What is node?', author: 'Stefan Bering' },
-  { text: 'What is React?', author: ' Timur Buchberger' },
-  { text: 'What is styled components?', author: ' Danilo Bräuer' },
-  { text: 'What is node?', author: 'Stefan Bering' },
-  { text: 'What is React?', author: ' Timur Buchberger' },
-  { text: 'What is styled999 components?', author: ' Danilo Bräuer' },
+  { text: 'What is styled components?', author: ' Danilo Bräuer' }
 ]
 
 const Cards = () => {
