@@ -2,25 +2,31 @@ import styled from 'styled-components/macro'
 import Cards from './components/Cards/Cards'
 import Form from './components/Form/Form'
 import localStorageInit from './components/LocalStorage/LocalStorageInit'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { nanoid } from 'nanoid'
 import LoginForm from './components/LoginForm/LoginForm'
+import getCards from './services/GetCards'
 
 function App() {
-  localStorageInit()
-
-  const [data, setData] = useState(JSON.parse(localStorage.getItem('data')))
+  const [data, setData] = useState([])
   const [user, setUser] = useState('')
+
+  useEffect(() => {
+    getCards()
+      .then(cards => console.log(cards))
+      .catch(error => console.error(error))
+  }, [])
 
   const addQuestionHandler = question => {
     const newData = [...data, { text: question, author: user, id: nanoid() }]
-    localStorage.setItem('data', JSON.stringify(newData))
+    //localStorage.setItem('data', JSON.stringify(newData))
     setData(newData)
+    setUser(user)
   }
 
   const deleteQuestionHandler = id => {
     const newData = data.filter(card => card.id !== id)
-    localStorage.setItem('data', JSON.stringify(newData))
+    //localStorage.setItem('data', JSON.stringify(newData))
     setData(newData)
   }
 
