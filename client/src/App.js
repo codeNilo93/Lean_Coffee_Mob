@@ -21,8 +21,7 @@ function App() {
     pushCard(newCard)
       .then(res => res.json())
       .then(data => {
-        const newData = [...cards, data]
-        setCards(newData)
+        setCards([...cards, data])
       })
       .catch(error => console.error(error))
   }
