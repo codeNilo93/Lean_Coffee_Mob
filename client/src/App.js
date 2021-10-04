@@ -1,33 +1,37 @@
 import styled from 'styled-components/macro'
 import Cards from './components/Cards/Cards'
 import Form from './components/Form/Form'
-import localStorageInit from './components/LocalStorage/LocalStorageInit'
 import { useEffect, useState } from 'react'
 import { nanoid } from 'nanoid'
 import LoginForm from './components/LoginForm/LoginForm'
 import getCards from './services/GetCards'
+import pushCard from './services/PushCard'
 
 function App() {
-  const [data, setData] = useState([])
+  const [cards, setCards] = useState([])
   const [user, setUser] = useState('')
 
   useEffect(() => {
     getCards()
-      .then(cards => console.log(cards))
+      .then(data => setCards(data))
       .catch(error => console.error(error))
   }, [])
 
   const addQuestionHandler = question => {
-    const newData = [...data, { text: question, author: user, id: nanoid() }]
-    //localStorage.setItem('data', JSON.stringify(newData))
-    setData(newData)
-    setUser(user)
+    const newCard = { text: question, author: user, id: nanoid() }
+    const newData = [...cards, newCard]
+    pushCard(newCard)
+      .then(res => res.json())
+      .then(data => {
+        setCards(newData)
+        setUser(user)
+      })
+      .catch(error => console.error(error))
   }
 
   const deleteQuestionHandler = id => {
-    const newData = data.filter(card => card.id !== id)
-    //localStorage.setItem('data', JSON.stringify(newData))
-    setData(newData)
+    const newData = cards.filter(card => card.id !== id)
+    setCards(newData)
   }
 
   const addUserHandler = username => {
@@ -38,7 +42,7 @@ function App() {
   return (
     <StyledDiv>
       {user ? (
-        <Cards data={data} onDeleteQuestion={deleteQuestionHandler} />
+        <Cards data={cards} onDeleteQuestion={deleteQuestionHandler} />
       ) : (
         <LoginForm onAddUser={addUserHandler} />
       )}
