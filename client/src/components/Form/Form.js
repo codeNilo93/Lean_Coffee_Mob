@@ -8,7 +8,9 @@ const Form = ({ onAddQuestion }) => {
     setQuestion(event.target.value)
   }
 
-  const submitForm = () => {
+  const submitForm = event => {
+    event.preventDefault()
+    event.target.reset()
     onAddQuestion(question)
   }
 
@@ -22,7 +24,7 @@ const Form = ({ onAddQuestion }) => {
         placeholder="Please enter your question"
         onChange={event => changeQuestionHandler(event)}
       />
-      <StyledButton type="submit">Save</StyledButton>
+      <StyledButton>Save</StyledButton>
     </StyledForm>
   )
 }
