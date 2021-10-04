@@ -7,7 +7,7 @@ const Cards = ({ data, onDeleteQuestion }) => {
       {data.map(card => {
         return (
           <Card
-            id={card.id}
+            id={card._id}
             text={card.text}
             author={card.author}
             key={card.id}
