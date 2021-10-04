@@ -10,12 +10,12 @@ const Form = ({ onAddQuestion }) => {
 
   const submitForm = event => {
     event.preventDefault()
-    document.getElementById('create-question-form').reset()
+    event.target.reset()
     onAddQuestion(question)
   }
 
   return (
-    <StyledForm onSubmit={submitForm} id="create-question-form">
+    <StyledForm onSubmit={submitForm}>
       <StyledLabel htmlFor="newQuestion">Question</StyledLabel>
       <StyledInput
         type="text"
