@@ -5,12 +5,14 @@ const Cards = ({ data, onDeleteQuestion }) => {
   return (
     <StyledMain>
       {data.map(card => {
+        console.log(card)
+        console.log(card._id)
         return (
           <Card
             id={card._id}
             text={card.text}
             author={card.author}
-            key={card.id}
+            key={card._id}
             onDeleteQuestion={onDeleteQuestion}
           />
         )
